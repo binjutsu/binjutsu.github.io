@@ -6,4 +6,25 @@ ncat -l -k -e ./binary -p port
 file the program to find out arch/OS
 use checksec and find out the protections, they are a clue.
 
+1. running binaries.
+
+you can run a binary with: 
+
+#!/bin/sh
+# $1 = program $2 = port
+ncat -l -k -e $1 -p $2
+
+write the python exploit such that 
+  s = socket.create_connection(('localhost', 1234))
+  data = s.recv(200)
+
+then set up as much as possible, right before the sending the payload
+add a raw_input() to give you the time to attach gdb.
+
+socat can also be used:
+socat -lm -d -d TCP-LISTEN:1234,fork EXEC:./binary,stderr
+
+TIL: bss segment variables do not change with ASLR
+
+
 
