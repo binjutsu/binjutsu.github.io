@@ -1,0 +1,9 @@
+brief ctf notes:
+
+1. run the binary like this:
+ncat -l -k -e ./binary -p port
+
+file the program to find out arch/OS
+use checksec and find out the protections, they are a clue.
+
+
